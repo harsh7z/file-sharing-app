@@ -86,14 +86,14 @@ const App = () => {
       <div className="flex flex-col gap-2">
         <form
           onSubmit={handleSubmit}
-          className="form w-full max-w-md p-6 border border-gray-600 rounded-md flex flex-col gap-4 shadow-lg"
+          className="form w-full max-w-md p-6 border border-gray-600 rounded-sm flex flex-col gap-4 shadow-lg"
         >
           <span className="text-2xl font-bold">AWS File Sharing</span>
           {/* File Input */}
           <div className="flex items-center gap-3">
             <label
               htmlFor="fileInput"
-              className="cursor-pointer bg-white text-black rounded-md px-4 py-2 text-center font-semibold hover:bg-gray-300 transition select-none"
+              className="cursor-pointer bg-white text-black rounded-sm px-4 py-2 text-center font-semibold hover:bg-gray-300 transition select-none"
             >
               Choose File
             </label>
@@ -109,14 +109,14 @@ const App = () => {
           {emails.map((email, index) => (
             <div key={index} className="flex flex-col gap-1">
               <div className="flex items-center gap-3">
-                <span className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-black font-bold">
+                <span className="px-3 py-2  flex items-center justify-center rounded-sm bg-white text-black font-bold">
                   {index + 1}
                 </span>
                 <input
                   type="email"
                   className={`flex-grow bg-black border ${
                     emailErrors[index] ? "border-red-500" : "border-gray-600"
-                  } rounded-md p-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition`}
+                  } rounded-sm p-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition`}
                   placeholder={`johndoe${index + 1}@email.com`}
                   value={email}
                   onChange={(e) => handleChange(index, e.target.value)}
@@ -124,7 +124,7 @@ const App = () => {
                 <button
                   type="button"
                   onClick={() => removeEmailField(index)}
-                  className="bg-white text-black rounded-md px-3 py-1 font-semibold hover:bg-gray-300 transition cursor-pointer"
+                  className="bg-white text-black rounded-sm px-3 py-2 font-semibold hover:bg-gray-300 transition cursor-pointer"
                 >
                   Remove
                 </button>
@@ -141,7 +141,7 @@ const App = () => {
               type="button"
               onClick={addEmailField}
               disabled={emails.length >= 5}
-              className="self-start bg-white text-black rounded-md px-4 py-2 font-semibold hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              className="self-start bg-white text-black rounded-sm px-4 py-2 font-semibold cursor-pointer hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
               Add email
             </button>
@@ -165,9 +165,9 @@ const App = () => {
           <button
             id="submit"
             type="submit"
-            className="bg-white text-black rounded-md px-4 py-2 font-semibold hover:bg-gray-300 transition"
+            className="bg-white text-black rounded-sm px-4 py-2 font-semibold cursor-pointer hover:bg-gray-300 transition"
           >
-            Submit
+            Share File
           </button>
         </form>
       </div>
