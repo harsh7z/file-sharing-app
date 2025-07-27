@@ -34,9 +34,7 @@ const FunnelSans = localFont({
   variable: "--font-funnelsans",
 });
 export const metadata = {
-  title: "Harsh Patel | Portfolio",
-  description:
-    "Harsh Patel's personal portfolio website built with Next.js, showcasing projects and skills.",
+  title: "AWS File Sharing",
   icons: {
     icon: "/favicon.ico",
   },

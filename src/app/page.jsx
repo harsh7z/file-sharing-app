@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [emails, setEmails] = useState([""]);
@@ -44,34 +46,43 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate all emails before submit
-    const errors = emails.map((email) =>
-      email && !validateEmail(email) ? "Invalid email format" : ""
-    );
-    setEmailErrors(errors);
-
-    if (errors.some((err) => err !== "")) {
-      console.warn("Fix email errors before submitting.");
-      return;
-    }
-
     const file = fileInputRef.current?.files?.[0];
-    if (!file) return;
+      if (!file) {
+    toast.warn("No file selected");
+    return;
+  }
 
+    const formData = new FormData();
     formData.append("file", file);
-    formData.append("emails", JSON.stringify(emails));
+    emails.forEach((email) => formData.append("emails", email));
 
-    const res = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const res = await fetch("http://localhost:8000/upload/", {
+        method: "POST",
+        body: formData,
+      });
 
-    const data = await res.json();
-    console.log(data);
+      const data = await res.json();
+      console.log("Response from backend:", data);
+
+      toast.success("File uploaded and emails sent!");
+
+      setEmails([""]);
+      setSelectedFileName("");
+      if (fileInputRef.current) fileInputRef.current.value = null;
+    } catch (err) {
+      console.error("Upload error:", err);
+      toast.error("Upload failed. Please try again.");
+    }
   };
 
   return (
     <div className="w-screen h-screen bg-black text-white flex justify-center items-center px-4">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+      />
       <div className="flex flex-col gap-2">
         <form
           onSubmit={handleSubmit}
