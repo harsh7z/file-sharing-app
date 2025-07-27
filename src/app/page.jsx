@@ -47,10 +47,10 @@ const App = () => {
     e.preventDefault();
 
     const file = fileInputRef.current?.files?.[0];
-      if (!file) {
-    toast.warn("No file selected");
-    return;
-  }
+    if (!file) {
+      toast.warn("No file selected");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("file", file);
@@ -65,7 +65,11 @@ const App = () => {
       const data = await res.json();
       console.log("Response from backend:", data);
 
-      toast.success("File uploaded and emails sent!");
+      if (data.status == 200) {
+        toast.success("File uploaded and emails sent!");
+      }else{
+        toast.error("Sharing failed. Please try again.")
+      }
 
       setEmails([""]);
       setSelectedFileName("");
