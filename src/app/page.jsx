@@ -54,7 +54,11 @@ const App = () => {
 
     const formData = new FormData();
     formData.append("file", file);
-    emails.forEach((email) => formData.append("emails", email));
+    emails.forEach((email) => {
+      if (email.trim()) {
+        formData.append("emails", email.trim());
+      }
+    });
 
     try {
       const res = await fetch("http://localhost:8000/upload/", {
@@ -67,8 +71,8 @@ const App = () => {
 
       if (data.status == 200) {
         toast.success("File uploaded and emails sent!");
-      }else{
-        toast.error("Sharing failed. Please try again.")
+      } else {
+        toast.error("Sharing failed. Please try again.");
       }
 
       setEmails([""]);
