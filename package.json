@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "export": "next export",
-    "predeploy": "npm run build && npm run export",
-    "deploy": "gh-pages -d out"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "aws-sdk": "^2.1692.0",
