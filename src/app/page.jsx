@@ -61,7 +61,7 @@ const App = () => {
     });
 
     try {
-      const res = await fetch("http://localhost:8000/upload/", {
+      const res = await fetch("http://52.201.253.190:8000/upload/", {
         method: "POST",
         body: formData,
       });
