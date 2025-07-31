@@ -61,7 +61,7 @@ const App = () => {
     });
 
     try {
-      const res = await fetch("http://52.201.253.190:8000/upload/", {
+      const res = await fetch("http://54.242.165.101:8000/upload/", {
         method: "POST",
         body: formData,
       });
@@ -97,7 +97,6 @@ const App = () => {
           className="form w-full max-w-md p-6 border border-gray-600 rounded-sm flex flex-col gap-4 shadow-lg"
         >
           <span className="text-2xl font-bold">AWS File Sharing</span>
-          {/* File Input */}
           <div className="flex items-center gap-3">
             <label
               htmlFor="fileInput"
@@ -113,7 +112,6 @@ const App = () => {
             </span>
           </div>
 
-          {/* Email Inputs */}
           {emails.map((email, index) => (
             <div key={index} className="flex flex-col gap-1">
               <div className="flex items-center gap-3">
@@ -125,7 +123,7 @@ const App = () => {
                   className={`flex-grow bg-black border ${
                     emailErrors[index] ? "border-red-500" : "border-gray-600"
                   } rounded-sm p-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition`}
-                  placeholder={`johndoe${index + 1}@email.com`}
+                  placeholder={`johndoe@email.com`}
                   value={email}
                   onChange={(e) => handleChange(index, e.target.value)}
                 />
@@ -143,7 +141,6 @@ const App = () => {
             </div>
           ))}
 
-          {/* Add Button */}
           <div>
             <button
               type="button"
@@ -160,7 +157,6 @@ const App = () => {
             )}
           </div>
 
-          {/* Hidden File Input */}
           <input
             id="fileInput"
             type="file"
@@ -169,7 +165,6 @@ const App = () => {
             onChange={handleFileChange}
           />
 
-          {/* Submit */}
           <button
             id="submit"
             type="submit"
